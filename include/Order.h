@@ -4,19 +4,35 @@
 #include "Inventory.h"
 #include "Discounts.h"
 
+/** Підсумкові суми замовлення */
 struct OrderTotals {
-    Money subtotal;
-    Money discount;
-    Money vat;     // 20% від (subtotal - discount), не < 0
-    Money total;   // subtotal - discount + vat
+    Money subtotal; ///< Сума без знижок і ПДВ
+    Money discount; ///< Знижка
+    Money vat;      ///< ПДВ (20% від subtotal-discount)
+    Money total;    ///< До сплати
 };
 
+/**
+ * @brief Оформлення замовлень
+ * 
+ * Рахує суми, застосовує знижки, ПДВ, резервує товари
+ */
 class OrderService {
     Inventory& inventory_;
     double vatRate_;
 public:
+    /** @param inv інвентар для резервування */
     explicit OrderService(Inventory& inv, double vatRate = 0.20)
         : inventory_(inv), vatRate_(vatRate) {}
 
+    /**
+     * Оформляє замовлення
+     * @param cart кошик
+     * @param promo промокод (опціонально)
+     * @throws std::runtime_error якщо не вистачає товарів на складі
+     * 
+     * @example
+     * OrderTotals t = service.checkout(cart, "SAVE10");
+     */
     OrderTotals checkout(const Cart& cart, const std::string& promo = "");
 };
