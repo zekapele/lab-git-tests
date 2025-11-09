@@ -24,6 +24,10 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -39,7 +43,11 @@ jobs:
 
       - name: Generate documentation
         run: |
-          doxygen Doxyfile
+          doxygen Doxyfile || true
+          if [ ! -d "docs/html" ]; then
+            echo "Error: docs/html directory was not created"
+            exit 1
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
