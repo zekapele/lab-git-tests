@@ -28,6 +28,6 @@ public:
     explicit OrderService(Inventory& inv, double vatRate = 0.20)
         : inventory_(inv), vatRate_(vatRate) {}
 
-    /** Оформляє замовлення. Рахує суми, застосовує знижки, ПДВ, резервує товари. Викидає std::runtime_error якщо не вистачає товарів */
+    /** Оформляє замовлення. Рахує суми, застосовує знижки, ПДВ, резервує товари */
     OrderTotals checkout(const Cart& cart, const std::string& promo = "");
 };
