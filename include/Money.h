@@ -14,7 +14,9 @@ public:
     /** Конструктор за замовчуванням - 0 грн */
     Money() : cents_(0) {}
 
-    /** @param cents кількість копійок */
+    /** Створює Money з копійок
+     * @param cents кількість копійок
+     */
     explicit Money(int64_t cents) : cents_(cents) {}
 
     /**
@@ -31,18 +33,30 @@ public:
         return Money(major * 100 + minor);
     }
 
-    /** Створює з double значення */
+    /** Створює Money з числа з плаваючою комою
+     * @param value значення в гривнях
+     */
     static Money fromDouble(double value);
 
     /** Повертає кількість копійок */
     int64_t cents() const { return cents_; }
 
+    /** Додає дві суми */
     Money operator+(Money other) const { return Money(cents_ + other.cents_); }
+    
+    /** Віднімає одну суму від іншої */
     Money operator-(Money other) const { return Money(cents_ - other.cents_); }
+    
+    /** Множить суму на кількість */
     Money operator*(int qty) const     { return Money(cents_ * qty); }
 
+    /** Перевіряє рівність сум */
     bool operator==(Money other) const { return cents_ == other.cents_; }
+    
+    /** Перевіряє нерівність сум */
     bool operator!=(Money other) const { return !(*this == other); }
+    
+    /** Перевіряє чи поточна сума менша */
     bool operator<(Money other)  const { return cents_ < other.cents_; }
 
     /** Формат: "X.XX грн" */

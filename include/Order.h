@@ -21,7 +21,10 @@ class OrderService {
     Inventory& inventory_;
     double vatRate_;
 public:
-    /** @param inv інвентар для резервування */
+    /** Конструктор сервісу замовлень
+     * @param inv інвентар для резервування
+     * @param vatRate ставка ПДВ (за замовчуванням 0.20 = 20%)
+     */
     explicit OrderService(Inventory& inv, double vatRate = 0.20)
         : inventory_(inv), vatRate_(vatRate) {}
 

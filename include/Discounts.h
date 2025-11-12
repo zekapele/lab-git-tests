@@ -15,17 +15,18 @@ struct DiscountResult {
  */
 class Discounts {
 public:
-    /**
-     * Фіксована знижка за промокодом
-     * Промокоди: SAVE10 (10 грн), SAVE20 (20 грн), SAVE50 (50 грн)
+    /** Фіксована знижка за промокодом. Промокоди: SAVE10 (10 грн), SAVE20 (20 грн), SAVE50 (50 грн)
+     * @param code промокод
+     * @param subtotal підсумкова сума замовлення
      * 
      * @example
      * auto r = Discounts::promoFixed("SAVE10", subtotal);
      */
     static DiscountResult promoFixed(const std::string& code, Money subtotal);
 
-    /**
-     * 10% знижка якщо subtotal >= threshold
+    /** 10% знижка якщо subtotal >= threshold
+     * @param subtotal підсумкова сума замовлення
+     * @param threshold мінімальна сума для застосування знижки
      * 
      * @example
      * auto r = Discounts::tenPercentOver(1000, 500); // 10% від 1000
