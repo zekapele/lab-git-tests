@@ -28,14 +28,6 @@ public:
     explicit OrderService(Inventory& inv, double vatRate = 0.20)
         : inventory_(inv), vatRate_(vatRate) {}
 
-    /**
-     * Оформляє замовлення
-     * @param cart кошик
-     * @param promo промокод (опціонально)
-     * @throws std::runtime_error якщо не вистачає товарів на складі
-     * 
-     * @example
-     * OrderTotals t = service.checkout(cart, "SAVE10");
-     */
+    /** Оформляє замовлення. Рахує суми, застосовує знижки, ПДВ, резервує товари. Викидає std::runtime_error якщо не вистачає товарів */
     OrderTotals checkout(const Cart& cart, const std::string& promo = "");
 };

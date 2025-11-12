@@ -19,14 +19,7 @@ public:
     /** Повертає кількість на складі (0 якщо немає) */
     int  getStock(const Product& p) const;
 
-    /**
-     * Резервує товар (зменшує кількість)
-     * @throws std::runtime_error якщо не вистачає
-     * 
-     * @example
-     * inv.setStock(p, 10);
-     * inv.reserve(p, 3); // залишилось 7
-     */
+    /** Резервує товар (зменшує кількість). Викидає std::runtime_error якщо не вистачає */
     void reserve(const Product& p, int qty);
 
     /** Повертає товар на склад (збільшує кількість) */
