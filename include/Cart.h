@@ -21,9 +21,13 @@ public:
     const std::vector<CartItem>& items() const { return items_; }
 
     /**
-     * Додає товар до кошика
-     * @param p товар
-     * @param qty кількість
+     * @brief Додає товар до кошика
+     * 
+     * Якщо товар з такими самими id, color та size вже є в кошику,
+     * то кількість додається до існуючої. Інакше створюється новий елемент.
+     * 
+     * @param p товар для додавання
+     * @param qty кількість одиниць товару
      * 
      * @example
      * cart.add(product, 2);
